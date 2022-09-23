@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import debounce from "lodash.debounce";
-import { products } from "../config/data/productData";
+import { IProductItem, products } from "../config/data/productData";
 import { discountCalculate, searchByTitle } from "../config/utils";
 
 const search = (query: string) => {
@@ -59,21 +59,21 @@ const Home: NextPage = () => {
           </p>
           <div className="result-list">
             {productData && productData.length > 0 ? (
-              productData.map((item: any) => {
+              productData.map((item: IProductItem) => {
+                console.log("item.id ",item.id, Number(item.variants[0].price) === 0)
                 return (
                   <div className="card" key={item.id}>
-                    {item.variants[0].price == 0 || item.variants[0].inventory_quantity <= 0 && (
-                      <div className="card-place-image">
-                        <p className="card-place-image_content">Hết hàng</p>
-                      </div>
-                    )}
+                    {(Number(item.variants[0].price) === 0 || item.variants[0].inventory_quantity <= 0) && 
+                       <div className="card-place-image">
+                       <p className="card-place-image_content">Hết hàng</p>
+                     </div>}
 
                     <img className="card-image" src={item.image.src}></img>
                     <div className="card-body">
                       <span className="card-title">
                         {item.title}
                         <span className="discount">
-                          giảm {" "} 
+                          giảm{" "}
                           {discountCalculate(
                             item.variants[0].price,
                             item.variants[0].compare_at_price
@@ -90,7 +90,7 @@ const Home: NextPage = () => {
                         {item.variants[0].inventory_quantity > 0
                           ? item.variants[0].inventory_quantity
                           : 0}{" "}
-                        sản phẩm
+                         sản phẩm
                       </p>
                     </div>
                   </div>
