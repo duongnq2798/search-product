@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Test 2: Tìm kiếm sản phẩm
 
-## Getting Started
+### Cách cài đặt và khởi động dự án
 
-First, run the development server:
+1. Cài đặt các thành phần phụ thuộc: `yarn install / npm install`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+2. Khởi động dự án: `yarn dev / npm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Cách hoạt động của dự án
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Gồm 1 ô input để người dùng có thể nhập tên của sản phẩm cần tìm.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Khi dữ liệu được nhập vào thì mình sẽ chạy vòng lặp qua từng phần tử trong mảng sản phẩm để tim ra tên của sản phẩm trùng với nội dung mà người dùng đã nhập
+    + Trong đây mình cần chuyển về chữ thường để kiểm tra vì trong trường hợp người dùng không nhập từng chữ vào gồm cả chữ cái hoa và chữ cái thường thì dù là về mặt chữ thì giống nhau nhưng sẽ không trả ra kết quả chính xác.
+    + Sau khi có kết quả tìm kiếm thì giao diện sẽ hiển thị 
+        
+        + Nếu không tìm được kết quả phù hợp thì hiển thị "Kết quả tìm kiếm : 0 sản phẩm"
+        + Nếu tìm được thì hiển thị số lượng kết quả tìm kiếm được và thông tin của các sản phẩm thỏa điều kiện.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Về giao diện sẽ hiển thị danh sách các sản phẩm bên dưới ô input bao gồm hình ảnh, tên sản phẩm, giảm giá, giá sản phẩm và số lượng sản phẩm còn lại
+    + Đối với các sản phẩm có giá là 0 hoặc số lượng nhỏ hơn hoặc bằng không thì hiển thị trạng thái hết hàng đề người dùng.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Kết quả thử nghiệm
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+     https://search-product-xi.vercel.app/   
